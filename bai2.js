@@ -1,57 +1,16 @@
-const game = {
-    team1: 'Bayern Mucnich',
-    team2: 'Real Madrid',
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
 
-    players: [
-        [
-            'Neuer',
-            'Pavard',
-            'Coman',
-            'Alaba',
-            'Kimich',
-            'Goretzka',
-            'Muller',
-            'Gnarby',
-            'Lewandowski',
-            'Davies',
-            'Martinez',
-        ],
-        [
-            'Burki',
-            'Schulz',
-            'Hummels',
-            'Akanji',
-            'Hakimi',
-            'Weigl',
-            'Witsel',
-            'Hazard',
-            'Brandt',
-            'Sancho',
-            'Gotze',
-        ],
-    ],
-    score: '4:0',
-    scored: ['Lewandowski', 'Gnabry', 'Lewandowski', 'Hummels'],
-    date: 'Nov 9th, 2037',
-    odds: {
-        team1: 1.33,
-        x: 3.25,
-        team2: 6.5,
-    }   
-};
+document.querySelector('button').addEventListener('click', function () {
+    const text = document.querySelector('textarea').value;
+    const rows = text.split('\n');
+    console.log(rows);
 
-for (const [i,players] of game.scored.entries())
-    console.log('Goall ${i + 1}: ${players}');
+    for(const row in rows) {
+        const [first, second] = row.toLowerCase().trim().split('_');
+        const output = `${first}${second.replace(second[0], second[0].toUpperCase)}`;
 
+        console.log(`${output.padEnd(20)}${'👌'}.repeat(i + 1)}`);
+    }
 
-const odds = Object.values(game.odds);
-let average = 0;
-for (const odds of odds) average += odds;
-average /= odds.length;
-console.log(average);
-
-
-for (const [team,odd] of Object.entries(game.odds)){
-    const  teamStr = team === 'x' ? 'draw' : 'Victory $ {game[team]}';
-    console.log('Odds of ${teamStr} ${odd}');
-}
+});
